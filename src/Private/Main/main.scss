@@ -1,0 +1,56 @@
+@use "../../Settings/scss/functions.scss";
+@use "../../Settings/scss/variebles.scss";
+.hero{
+    margin-top: 5rem;
+    padding: 1rem;
+}
+.hero-search-box{
+    margin: 2rem 0rem;
+    @include functions.flex(space-between);
+}
+.hero-search-box .hero-search-input{
+    background: transparent;
+    padding: 0.7rem 1rem;
+
+}
+.hero-search-input-box{
+    flex-basis: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+    padding-left: 0.4rem;
+}
+.input-light{
+    box-shadow: 0px 0px 3px 1px rgb(215, 214, 214);
+    color: black;
+}
+.hero-search-input-box svg{
+    font-size: 20px;
+}
+.input-dark .hero-search-input::placeholder{
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+.input-dark .hero-search-input{
+    color: #fff;
+}
+.input-light .hero-search-input::placeholder{
+    color: #848484;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+.input-dark{
+    background-color: variebles.$blackHeader;   
+    color: #fff;
+}   
+.hero-search-select-box{
+    flex-basis: 15%;
+}
+.hero-search-select{
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}

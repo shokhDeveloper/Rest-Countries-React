@@ -1,0 +1,24 @@
+.hero-inner-box{
+    margin-top: 1rem;
+    display: grid ;
+    grid-template: repeat(1, auto) / repeat(4, 1fr);
+    grid-gap: 20px;
+}
+.hero-inner-box .hero-card{
+    background: #2B3844;
+    border-radius: 10px;
+}
+.hero-card img{
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.hero-card .hero-card-body{
+    padding: 1rem;
+}
+.hero-card .hero-card-body *{
+    color: #fff;
+}

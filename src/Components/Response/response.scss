@@ -1,0 +1,16 @@
+@use "../../Settings/scss/functions.scss";
+.response{
+    width: 100%;
+    text-align: center;
+    min-height: 70vh;
+    @include functions.flex(center);
+}
+.response h3{
+    font-size: 40px;
+}
+.response-error h3{
+    color: crimson;
+}
+.response-loading h3{
+    color: #fff;
+}

@@ -1,0 +1,6 @@
+@use "../../Settings/scss/functions.scss";
+.loader{
+    width: 100%;
+    min-height: 100vh;
+    @include functions.flex(center);
+}
