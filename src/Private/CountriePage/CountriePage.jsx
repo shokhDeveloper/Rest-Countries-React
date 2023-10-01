@@ -1,3 +1,4 @@
+import "./countriePage.scss";
 import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Action, ApiSettings } from "../../Settings";
@@ -5,13 +6,25 @@ import { useQuery } from "react-query";
 import { ResponseSettings } from "../../Components/Response";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../../Settings/Utils";
 
 export const CountriePage = () => {
-  const {bordersCountries} = useSelector(({Reducer}) => Reducer)
+  const {bordersCountries, darkMode, bordersCountriesData} = useSelector(({Reducer}) => Reducer)
   const dispatch = useDispatch()
   const { countrie } = useParams();
   const navigate = useNavigate();
   const { getCountrie , getCountriesBorders} = ApiSettings;
+  const handleGetBorders = () => {
+        Promise.all(
+           bordersCountries.map(item => {
+             return(
+               getCountriesBorders(item).then(response => {
+                 return response.data
+               })
+             )
+           })
+         ).then(response => dispatch(Action.setBorderCountriesData(response)))
+  }
   const handleGetCountrie = useCallback(async () => {
     try {
       const request = await getCountrie(countrie).catch((error) =>
@@ -19,6 +32,11 @@ export const CountriePage = () => {
       );
       if (request?.status === 200 || request?.status === 304) {
         const response = await request.data;
+        if(response[0]?.borders){
+          dispatch(Action.setBordersCountries(response[0]?.borders))
+        }else{
+          console.log("Border Kelmadi")
+        }
         return response;
       }
     } catch (error) {
@@ -30,34 +48,17 @@ export const CountriePage = () => {
     handleGetCountrie
   );
   data = data?.length > 1 ? data.slice(0, 1) : data;
-  const handleGetBorders = (arr) => {
-   if(arr?.length){
-       Promise.all(
-           arr.map( item => {
-               return(
-                   getCountriesBorders(item).then(response => {
-                       return response.data
-                   })
-               )
-           })
-       ).then(response => dispatch(Action.setBordersCountries(response)))
-   }else{
-    return false
-   }
-  }
   useEffect(() => {
-    let borders = data?.length ? data[0].borders : data
-    console.log(data?.length ? data[0]: false)
-    handleGetBorders(borders)
-  }, [data]);
-  useEffect(() => {
-    console.log(bordersCountries)
+    if(bordersCountries?.length){
+      console.clear()
+      handleGetBorders(bordersCountries)
+      console.log(bordersCountries, "ishladi")
+    }
   },[bordersCountries])
-
   return (
-    <section className="countrie-page">
+    <section className={`countrie-page ${darkMode === "dark" ? "countrie-dark-page" : "countrie-light-page"} `}>
       <div className="container">
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button className="countrie-back-btn border-transparent" onClick={() => navigate(-1)}>Back</button>
         {isLoading && (
           <ResponseSettings type={"loading"} text={"Yuklanmoqda"} />
         )}
@@ -68,10 +69,10 @@ export const CountriePage = () => {
                 <div className="countrie-inner">
                     <div className="countrie-inner-box">
                   <div className="countrie-image-box">
-                    <img src={item.flags.svg} alt="" />
+                    <img src={item?.flags?.svg}  alt="Flag" />
                   </div>
                   <div className="countrie-title-box">
-                    <h3>{item.name.common}</h3>
+                    <h3>{item?.name?.common}</h3>
                     <div className="countrie-text-box">
                       <div className="countrie-texts">
                         <p>
@@ -121,18 +122,25 @@ export const CountriePage = () => {
                         })(item.languages)}
                       </div>
                     </div>
-                    </div>
-                  </div>
-                  <div className="countrie-border-countries">
-                        {bordersCountries?.map((item) => {
+                  {bordersCountriesData?.length ?  (
+                    <div className="countrie-border-countries">
+                      <p><strong>Border Countries</strong></p>
+                      {bordersCountriesData?.map(item => {
+                       if(item?.length){
+                         return(
+                           item?.map(item => {
                             return(
-                                item.map(item => {
-                                    return(
-                                        <p>{item.name.common}</p>
-                                    )
-                                })
+                              <div className="countrie-border">
+                                {item.name.common + " "}
+                              </div>
                             )
-                        })}
+                           })
+                         )
+                       }
+                      })}
+                    </div>
+                  ): "Xatolik"}
+                    </div>
                   </div>
                 </div>
               );

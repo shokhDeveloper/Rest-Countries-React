@@ -4,8 +4,10 @@ const initialState = {
     countries: [],
     loader: getItem("loader") ? false : true,
     darkMode: getItem("darkMode") ? getItem("darkMode") : "light",
+    region: null,
     searchCountries: [],
-    bordersCountries: []
+    bordersCountries: [],
+    bordersCountriesData: []
 }
 export const slice = createSlice({
     name: "rest-countries",
@@ -32,6 +34,12 @@ export const slice = createSlice({
         },
         setBordersCountries(state, action){
             state.bordersCountries = action.payload
+        },
+        setBorderCountriesData(state, action){
+            state.bordersCountriesData = action.payload
+        },
+        setRegion(state, action){
+            state.region = action.payload
         }
     }
 })

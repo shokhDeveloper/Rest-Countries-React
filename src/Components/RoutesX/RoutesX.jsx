@@ -1,8 +1,7 @@
 import { useRoutes } from "react-router";
-import { CountriePage, DefaultRes, Search } from "../../Private";
+import { CountriePage, DefaultRes, RegionSearch, Search } from "../../Private";
 
 export const RoutesX = (defaultX) => {
-    console.log(defaultX)
   const routes = [
     {
       path: "/",
@@ -15,6 +14,10 @@ export const RoutesX = (defaultX) => {
     {
       path: "/countrie/:countrie",
       element: <CountriePage/>
+    },
+    {
+      path: "/region/:region",
+      element: <RegionSearch/>
     }
   ];
   const route = useRoutes(routes)

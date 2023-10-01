@@ -1,0 +1,66 @@
+.countrie-page .countrie-back-btn{
+    padding: 0.4rem 2rem;
+    padding-right: 0.5rem;
+    background: #2B3844;
+    font-size: 15px;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    background-image: url("../../Settings/assets/images/Shape.svg");
+    background-position: calc(10%);
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+.countrie-inner{
+    margin-top: 1rem;
+}
+.countrie-inner-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.countrie-inner-box .countrie-image-box{
+    flex-basis: 45%;
+    min-height: 420px;
+}
+.countrie-image-box img{
+   width: 100%;
+   height: 100%;
+    object-fit: cover;
+}
+.countrie-inner-box .countrie-title-box{
+    flex-basis: 45%;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.countrie-title-box .countrie-text-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.countrie-dark-page * {
+    color: #fff;
+}
+.countrie-dark-page .countrie-title-box h3{
+    font-family: "Nunito-Sans-extrabold";
+    font-size: 35px;
+}
+.countrie-border-countries {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.countrie-border-countries p{
+    margin-right: 1rem;
+    font-size: 20px;
+}
+.countrie-border-countries .countrie-border{
+    padding: 0.3rem 1rem;
+    color: #FFFFFF;
+    background: #2B3844;
+    border-radius: 10px;
+}
+.countrie-border-countries .countrie-border:not(:last-child){
+    margin-right: 1rem;
+}

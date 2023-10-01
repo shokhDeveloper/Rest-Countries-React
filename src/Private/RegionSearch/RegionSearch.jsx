@@ -5,32 +5,25 @@ import { useDispatch, useSelector } from "react-redux"
 import { Countre } from "../../Components"
 import { ResponseSettings } from "../../Components/Response"
 
-export const Search = () => {
-    const {searchCountries,region} = useSelector(({Reducer}) => Reducer)
+export const RegionSearch = () => {
+    const {searchCountries} = useSelector(({Reducer}) => Reducer)
     const dispatch = useDispatch()
-    const {countrie} = useParams()
-    const {getSearchCountries} = ApiSettings
-    const handleGetSearchCounrtries = useCallback(async () => {
-        try{
-           let request = await getSearchCountries(countrie).catch(error => console.log(error))
-            if(request?.status === 200 || request?.status === 304){
-                const response = await request.data
-                dispatch(Action.setSearchCountries(response))
-            }   
-        }catch(error){
-            return error
+    const {getRegionCountries} = ApiSettings
+    const paramsRegion = useParams()
+    const handleGetRegion = useCallback(async () => {
+        const request = await getRegionCountries(paramsRegion.region).catch(error => console.log(error))
+        if(request?.status === 200 || request?.status === 304){
+            const response = await request.data
+            dispatch(Action.setSearchCountries(response))
         }
-    },[countrie])
+    },[paramsRegion])
     useEffect(() => {
-        handleGetSearchCounrtries()
-    },[handleGetSearchCounrtries])
-    useEffect(() => {
-        console.log(region)
-    }, [region])
+        handleGetRegion()
+    },[handleGetRegion])
     return(
         <section className="hero">
             <div className="container">
-                {searchCountries?.length ?  (
+            {searchCountries?.length ?  (
                     <div className="hero-inner-box">
                         {searchCountries?.map(item => {
                             return(
@@ -41,7 +34,6 @@ export const Search = () => {
                 ) : (
                     <ResponseSettings type={"error"} text={"Server da xatolik yuz berdi"}/>
                 )}
-
             </div>
         </section>
     )

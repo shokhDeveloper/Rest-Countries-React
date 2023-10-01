@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router";
-import { Action, GlobalStyle, route } from "./Settings";
+import { Action, BASE_URL, GlobalStyle, route } from "./Settings";
 import { Loader } from "./Components";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -32,7 +32,6 @@ function App() {
       document.body.classList.add("body-light")
     }
   },[darkMode])
-  
   return (
     <div className="restCountries">
     {loader ? (
