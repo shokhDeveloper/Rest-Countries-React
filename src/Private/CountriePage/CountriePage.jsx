@@ -57,7 +57,6 @@ export const CountriePage = () => {
   },[bordersCountries])
   return (
     <section className={`countrie-page ${darkMode === "dark" ? "countrie-dark-page" : "countrie-light-page"} `}>
-      <div className="container">
         <button className="countrie-back-btn border-transparent" onClick={() => navigate(-1)}>Back</button>
         {isLoading && (
           <ResponseSettings type={"loading"} text={"Yuklanmoqda"} />
@@ -153,7 +152,7 @@ export const CountriePage = () => {
             type={"error"}
           />
         )}
-      </div>
+
     </section>
   );
 };

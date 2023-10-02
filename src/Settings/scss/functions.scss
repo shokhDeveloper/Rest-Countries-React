@@ -3,3 +3,8 @@
     align-items: center;
     justify-content: $justify-content;
 }
+@mixin media($maxWidth){
+    @media only screen and (max-width: $maxWidth){
+        @content;
+    }
+}

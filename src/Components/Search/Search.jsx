@@ -15,13 +15,8 @@ export const Search = () => {
       }
     }
     const handleRegionChange = (event) => {
-      dispatch(Action.setRegion(event.target.value)) 
+      navigate(`/region/${event.target.value}`)
     }
-    useEffect(() => {
-      if(region !== null){
-        navigate(`/region/${region}`)
-      }
-    },[region])
   return (
     <div className="hero-search-box">
       <div className={`hero-search-input-box ${darkMode === "dark" ? "input-dark": "input-light"} `}>

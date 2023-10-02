@@ -1,31 +1,47 @@
+@use "../../Settings/scss/functions.scss";
+.countrie-page{
+    transition: 0;
+}
 .countrie-page .countrie-back-btn{
     padding: 0.4rem 2rem;
     padding-right: 0.5rem;
-    background: #2B3844;
     font-size: 15px;
     border-radius: 10px;
     letter-spacing: 1px;
+
+}
+.countrie-dark-page .countrie-back-btn{
+    background: #2B3844;
+    color: #fff;
     background-image: url("../../Settings/assets/images/Shape.svg");
     background-position: calc(10%);
     background-size: 15px;
     background-repeat: no-repeat;
 }
+.countrie-light-page .countrie-back-btn{
+    background: #fff;
+    color: #000;
+    background-image: url("../../Settings/assets/images/Shape-blak.svg");
+    background-position: calc(10%);
+    background-size: 15px;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 10px 0px rgb(187, 185, 185);
+}
 .countrie-inner{
     margin-top: 1rem;
 }
 .countrie-inner-box{
-    display: flex;
+    display: grid;
+    grid-template: repeat(1, auto) / repeat(2, 45%);
     justify-content: space-between;
-    align-items: stretch;
 }
 .countrie-inner-box .countrie-image-box{
-    flex-basis: 45%;
-    min-height: 420px;
+    height: 420px;
 }
 .countrie-image-box img{
    width: 100%;
    height: 100%;
-    object-fit: cover;
+   object-fit: cover;
 }
 .countrie-inner-box .countrie-title-box{
     flex-basis: 45%;
@@ -42,7 +58,7 @@
 .countrie-dark-page * {
     color: #fff;
 }
-.countrie-dark-page .countrie-title-box h3{
+.countrie-page .countrie-title-box h3{
     font-family: "Nunito-Sans-extrabold";
     font-size: 35px;
 }
@@ -60,7 +76,60 @@
     color: #FFFFFF;
     background: #2B3844;
     border-radius: 10px;
+    margin-top: 0.5rem;
 }
 .countrie-border-countries .countrie-border:not(:last-child){
     margin-right: 1rem;
+}
+@include functions.media(1000px){
+    .countrie-inner-box{
+        grid-template: repeat(1, auto) / 50% 45% ;
+    }   
+}
+@include functions.media(1000px){
+    .countrie-inner-box{
+        grid-template-rows: repeat(2, auto);
+        grid-template-columns: 90% ;
+        justify-content: center;
+    }   
+    .countrie-image-box img{
+        object-fit: contain;
+        height: 100%;
+    }
+}
+@include functions.media(618px){
+    .countrie-image-box img{
+        object-fit: cover;
+        height: 100%;
+    }   
+}
+@include functions.media(520px){
+    .countrie-inner-box{
+        grid-template-columns: 100% ;
+        align-items: center;
+    }
+    .countrie-inner-box .countrie-image-box{
+        height: 350px ;
+    }
+    .countrie-image-box img{
+        height: 100%;
+    }
+}
+@include functions.media(445px){
+    .countrie-text-box{
+        flex-direction: column;
+    }
+}
+@include functions.media(425px){
+    .countrie-inner-box .countrie-image-box{
+        height: 310px ;
+    }  
+}
+@include functions.media(392px){
+    .countrie-inner-box .countrie-image-box{
+        height: 290px ;
+    }  
+    .countrie-image-box img{
+        object-fit: contain;
+    }
 }

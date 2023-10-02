@@ -4,9 +4,9 @@ import { Action, ApiSettings } from "../../Settings"
 import { useDispatch, useSelector } from "react-redux"
 import { Countre } from "../../Components"
 import { ResponseSettings } from "../../Components/Response"
-
+import { Search as SearchElements } from "../../Components"
 export const Search = () => {
-    const {searchCountries,region} = useSelector(({Reducer}) => Reducer)
+    const {searchCountries,region, darkMode} = useSelector(({Reducer}) => Reducer)
     const dispatch = useDispatch()
     const {countrie} = useParams()
     const {getSearchCountries} = ApiSettings
@@ -28,21 +28,19 @@ export const Search = () => {
         console.log(region)
     }, [region])
     return(
-        <section className="hero">
-            <div className="container">
+        <>
                 {searchCountries?.length ?  (
-                    <div className="hero-inner-box">
+                    <div className={`hero-inner-box ${darkMode === "dark" ? "hero-inner-dark": "hero-inner-light"}`}>
                         {searchCountries?.map(item => {
                             return(
                                 <Countre {...item}/>
-                            )
-                        })}
+                                )
+                            })}
                     </div>
                 ) : (
                     <ResponseSettings type={"error"} text={"Server da xatolik yuz berdi"}/>
-                )}
+                    )}
+                    </>
 
-            </div>
-        </section>
     )
 }

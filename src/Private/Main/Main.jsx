@@ -2,10 +2,8 @@ import "./main.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RoutesX, Search } from "../../Components";
 import { useCallback, useEffect } from "react";
-import { Action, ApiSettings } from "../../Settings";
+import {  ApiSettings } from "../../Settings";
 import { useQuery } from "react-query";
-import { Route, Routes } from "react-router";
-import { DefaultRes } from "../DefaultRes";
 export const Main = () => {
   const { darkMode } = useSelector(({ Reducer }) => Reducer);
   const dispatch = useDispatch()
@@ -23,12 +21,13 @@ export const Main = () => {
   const defaultQuery = useQuery("/independent?status=true", handleRequest)
   return (
     <main className={`${darkMode === "dark" ? "site-dark" : "site-light"}`}>
-      <section className="hero">
-        <div className="container">
-          <Search />
+        <section className="hero">
+          <div className="container">
+        <Search/>
           <RoutesX {...defaultQuery}/>
-        </div>
-      </section>
+          </div>
+
+        </section>
     </main>
   );
 };

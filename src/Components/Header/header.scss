@@ -50,3 +50,19 @@
 .site-header .site-header-title{
     font-family: "Nunito-sans-extrabold";
 }
+@include functions.media(606px){
+    .siteheader-inner-box .site-header-title{
+        font-size: 25px;
+    }
+}
+@include functions.media(440px){
+    .siteheader-inner-box .site-header-title{
+        font-size: 22px;
+    }
+}
+@include functions.media(400px){
+    .siteheader-inner-box .site-header-title{
+        font-size: 20px;
+    }
+}
+    

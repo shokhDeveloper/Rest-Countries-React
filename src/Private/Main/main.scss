@@ -1,20 +1,23 @@
 @use "../../Settings/scss/functions.scss";
 @use "../../Settings/scss/variebles.scss";
 .hero{
-    margin-top: 5rem;
+    margin-top: 4rem;
     padding: 1rem;
+    transition: 0 !important;
+    min-height: 100vh;
 }
 .hero-search-box{
     margin: 2rem 0rem;
-    @include functions.flex(space-between);
+    display: grid;
+    grid-template: repeat(1, auto) / repeat(2, 50%);
+    justify-content: space-between;
 }
 .hero-search-box .hero-search-input{
     background: transparent;
     padding: 0.7rem 1rem;
-
 }
 .hero-search-input-box{
-    flex-basis: 20%;
+    width: 50%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -46,11 +49,66 @@
     color: #fff;
 }   
 .hero-search-select-box{
-    flex-basis: 15%;
+    @include functions.flex(flex-end)
 }
 .hero-search-select{
-    width: 100%;
+    width: 50%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
     letter-spacing: 1px;
+}
+@include functions.media(1085px){
+    .hero-search-input-box{
+        width: 70%;
+    }
+}
+@include functions.media(1025px){
+    .hero-search-select-box select{
+        width: 70%;
+    }
+}
+@include functions.media(870px){
+    .hero-search-input-box{
+        width: 80%;
+    }
+}
+@include functions.media(690px){
+    .hero-search-input-box{
+        width: 100%;
+    }   
+}
+@include functions.media(600px){
+    .hero-search-box{
+        grid-template: repeat(2, auto) /  repeat(1, 70%);
+        grid-row-gap: 20px;
+        justify-content: flex-start;
+    }
+    .hero-search-input-box{
+        width: 80%;
+        border-radius: 10px;
+    }
+    .hero-search-select-box{
+        @include functions.flex(flex-start)
+    }
+    .hero-search-select-box select{
+        border-radius: 10px;
+    }
+}
+@include functions.media(400px){
+    .hero-search-input-box{
+        width:90%;
+    }
+}
+@include functions.media(539px){
+    .hero-search-box{
+        grid-template: repeat(2, auto) /  repeat(1, 80%);
+    }
+}
+@include functions.media(452px){
+    .hero-search-box{
+        grid-template: repeat(2, auto) /  repeat(1, 100%);
+    }
+}
+.hero-search-input-box input{
+    width: 100%;
 }
